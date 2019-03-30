@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 def final myApplicationId = "com.carousell.news"
 
@@ -56,6 +58,9 @@ dependencies {
     implementation deps.retrofit.adapterRxJava2
 
     implementation deps.threeten
+
+    implementation deps.glide.core
+    kapt deps.glide.compiler
 
 
     testImplementation deps.junit

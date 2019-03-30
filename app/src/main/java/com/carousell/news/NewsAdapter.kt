@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.carousell.base.BaseRecyclerViewAdapter
 import com.carousell.base.BaseRecyclerViewHolder
+import com.carousell.imageloader.GlideApp
+import kotlinx.android.synthetic.main.item_news.view.*
 
 class NewsAdapter(
      context: Context
@@ -24,7 +26,10 @@ class NewsAdapter(
 class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(itemView) {
 
     override fun bindDataToView(data: NewsModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        GlideApp.with(itemView.context)
+            .load("https://storage.googleapis.com/carousell-interview-assets/android/images/carousell-siu-rui-ceo-tia-sg-2018.jpg")
+            .error(R.drawable.ic_launcher_background)
+            .into(itemView.banner)
     }
 
 

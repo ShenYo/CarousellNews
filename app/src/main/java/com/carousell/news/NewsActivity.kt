@@ -46,11 +46,8 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
             adapter = NewsAdapter(this@NewsActivity).apply {
                 viewModel.fetchNews()
                     .applySchedulers()
-                    .subscribe { news ->
-                        setData(news)
-                    }.apply {
-                        compositeDisposable.add(this)
-                    }
+                    .subscribe { news -> setData(news) }
+                    .apply { compositeDisposable.add(this) }
             }
             layoutManager = LinearLayoutManager(this@NewsActivity)
         }

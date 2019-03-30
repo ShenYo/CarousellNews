@@ -2,6 +2,7 @@ package com.carousell.base
 
 import android.app.Application
 import com.carousell.di.repositoryModule
+import com.carousell.di.resourceModule
 import com.carousell.di.viewModelModule
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -39,7 +40,7 @@ class AppContext : Application()  {
 
     private fun initDependencyInjection() {
         startKoin(this, listOf(
-            viewModelModule, repositoryModule
+            viewModelModule, repositoryModule, resourceModule
         ))
     }
 }
