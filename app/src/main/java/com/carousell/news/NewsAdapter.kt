@@ -64,11 +64,11 @@ class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(ite
             period.months > 0 -> {
                 "${period.months} months ago"
             }
-            period.days / 7 >= 4 -> {
-                "${period.days / 7} weeks ago"
+            period.days / 7 < 4 -> {
+                "${period.days} days ago"
             }
             else -> {
-                "${period.days} weeks ago"
+                "${period.days / 7} weeks ago"
             }
         }
 
