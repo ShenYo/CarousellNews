@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def final myApplicationId = "com.carousell.news"
+
+android {
+    compileSdkVersion build_versions.targetSdk
+    buildToolsVersion build_versions.buildTools
+
+    defaultConfig {
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+    }
+
+
+    defaultConfig {
+        applicationId = myApplicationId
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin
+    implementation deps.ktx
+
+
+    implementation deps.appcompact
+    implementation deps.constraintLayout
+
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    testImplementation deps.junit
+
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+}
