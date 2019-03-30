@@ -40,8 +40,24 @@ dependencies {
 
     implementation deps.appcompact
     implementation deps.constraintLayout
+    implementation deps.materialComponent
 
-    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation deps.koin.core
+    implementation deps.koin.androidScope
+    implementation deps.koin.androidViewModel
+
+    implementation deps.rxJava2
+    implementation deps.rxAndroid
+
+    implementation deps.stetho
+    implementation deps.gson
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.converterGson
+    implementation deps.retrofit.adapterRxJava2
+
+    implementation deps.threeten
+
+
     testImplementation deps.junit
 
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
