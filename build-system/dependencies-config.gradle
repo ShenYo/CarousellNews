@@ -29,6 +29,8 @@ versions.retrofit = "2.2.0"
 versions.gson = "2.8.5"
 versions.stetho = "1.5.0"
 
+versions.glide = "4.9.0"
+
 versions.threeten = "1.1.0"
 
 
@@ -40,7 +42,7 @@ deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 deps.ktx = "androidx.core:core-ktx:$versions.ktx"
 
 //support lib
-deps.constraintLayout = "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+deps.constraintLayout = "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
 deps.appcompact = "androidx.appcompat:appcompat:$versions.appcompact"
 deps.materialComponent = "com.google.android.material:material:$versions.materialComponent"
 
@@ -67,6 +69,12 @@ deps.retrofit = retrofit
 
 // Date
 deps.threeten = "com.jakewharton.threetenabp:threetenabp:$versions.threeten"
+
+//Image Loader
+def glide = [:]
+glide.core = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+deps.glide = glide
 
 //test
 deps.junit = "junit:junit:$versions.junit"
