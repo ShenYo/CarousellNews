@@ -4,6 +4,7 @@
           package="com.carousell.news">
 
     <application
+            android:name="com.carousell.base.AppContext"
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
