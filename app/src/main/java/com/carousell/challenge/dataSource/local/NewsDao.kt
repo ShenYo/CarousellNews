@@ -1,10 +1,10 @@
-package com.carousell.dataSource.local
+package com.carousell.challenge.dataSource.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.carousell.dataSource.model.NewsModel
+import com.carousell.challenge.dataSource.model.NewsModel
 import io.reactivex.Single
 
 /**

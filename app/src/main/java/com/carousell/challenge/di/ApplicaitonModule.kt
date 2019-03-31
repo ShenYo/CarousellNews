@@ -1,12 +1,12 @@
-package com.carousell.di
+package com.carousell.challenge.di
 
 import androidx.room.Room
-import com.carousell.base.AppContext
-import com.carousell.util.ResourceManager
-import com.carousell.dataSource.CarousellDatabase
-import com.carousell.dataSource.remote.NewsApiService
-import com.carousell.dataSource.repo.NewsRepoImpl
-import com.carousell.features.news.NewsViewModel
+import com.carousell.challenge.base.AppContext
+import com.carousell.challenge.dataSource.CarousellNewsDatabase
+import com.carousell.challenge.dataSource.remote.NewsApiService
+import com.carousell.challenge.dataSource.repo.NewsRepoImpl
+import com.carousell.challenge.news.NewsViewModel
+import com.carousell.challenge.util.ResourceManager
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
@@ -48,14 +48,14 @@ val localDataSourceModule = module {
     single {
         Room.databaseBuilder(
             androidApplication(),
-            CarousellDatabase::class.java,
-            CarousellDatabase::class.java.simpleName
+            CarousellNewsDatabase::class.java,
+            CarousellNewsDatabase::class.java.simpleName
         )
             .fallbackToDestructiveMigration()
             .build()
     }
 
-    single { get<CarousellDatabase>().newsDao() }
+    single { get<CarousellNewsDatabase>().newsDao() }
 }
 
 val viewModelModule = module {

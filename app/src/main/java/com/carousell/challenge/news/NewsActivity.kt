@@ -1,13 +1,14 @@
-package com.carousell.features.news
+package com.carousell.challenge.news
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carousell.base.applySchedulers
-import com.carousell.dataSource.model.NewsModel
-import com.carousell.util.BaseRecyclerViewAdapter
+import com.carousell.challenge.R
+import com.carousell.challenge.base.applySchedulers
+import com.carousell.challenge.dataSource.model.NewsModel
+import com.carousell.challenge.util.BaseRecyclerViewAdapter
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,7 +43,7 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
         return when (item.itemId) {
             R.id.action_recent -> {
                 adapter.run {
-                    viewModel.getNewsSortedByTime()
+                    viewModel.getNewsOrderByTime()
                         .subscribe { news -> setData(news) }
                         .apply { compositeDisposable.add(this) }
 
@@ -52,7 +53,7 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
             }
             R.id.action_popular -> {
                 adapter.run {
-                    viewModel.getNewsSortedByRank()
+                    viewModel.getNewsOrderByRank()
                         .subscribe { news -> setData(news) }
                         .apply { compositeDisposable.add(this) }
 
@@ -111,7 +112,7 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
     private fun initData() {
         viewModel.fetchNews()
             .andThen {
-                viewModel.getNews().subscribe { news ->
+                viewModel.getNewsOrderByTime().subscribe { news ->
                     adapter.setData(news)
                     it.onComplete()
                 }

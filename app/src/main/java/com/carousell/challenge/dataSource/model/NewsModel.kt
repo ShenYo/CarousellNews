@@ -1,4 +1,4 @@
-package com.carousell.dataSource.model
+package com.carousell.challenge.dataSource.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

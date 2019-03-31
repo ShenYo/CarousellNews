@@ -1,4 +1,4 @@
-package com.carousell.base
+package com.carousell.challenge.base
 
 import io.reactivex.*
 import io.reactivex.android.schedulers.AndroidSchedulers

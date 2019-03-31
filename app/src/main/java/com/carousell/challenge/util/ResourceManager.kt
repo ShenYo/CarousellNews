@@ -1,6 +1,6 @@
-package com.carousell.util
+package com.carousell.challenge.util
 
-import com.carousell.base.AppContext
+import com.carousell.challenge.base.AppContext
 import java.io.IOException
 import java.nio.charset.Charset
 

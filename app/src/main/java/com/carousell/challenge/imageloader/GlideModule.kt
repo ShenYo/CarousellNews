@@ -1,4 +1,4 @@
-package com.carousell.imageloader
+package com.carousell.challenge.imageloader
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

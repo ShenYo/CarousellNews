@@ -1,7 +1,7 @@
 package com.carousell.features.news
 
-import com.carousell.dataSource.repo.NewsRepo
-import com.carousell.dataSource.repo.NewsRepoImpl
+import com.carousell.challenge.dataSource.repo.NewsRepo
+import com.carousell.challenge.dataSource.repo.NewsRepoImpl
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test

@@ -1,6 +1,6 @@
-package com.carousell.dataSource.remote
+package com.carousell.challenge.dataSource.remote
 
-import com.carousell.dataSource.model.NewsModel
+import com.carousell.challenge.dataSource.model.NewsModel
 import io.reactivex.Single
 import retrofit2.http.GET
 

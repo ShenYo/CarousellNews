@@ -1,9 +1,9 @@
-package com.carousell.features.news
+package com.carousell.challenge.news
 
 import androidx.lifecycle.ViewModel
-import com.carousell.base.applySchedulers
-import com.carousell.dataSource.model.NewsModel
-import com.carousell.dataSource.repo.NewsRepoImpl
+import com.carousell.challenge.base.applySchedulers
+import com.carousell.challenge.dataSource.model.NewsModel
+import com.carousell.challenge.dataSource.repo.NewsRepoImpl
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
@@ -19,14 +19,6 @@ class NewsViewModel : ViewModel(), KoinComponent {
     val publishSubject = PublishSubject.create<LoadingState>()
 
     private val newsRepo by inject<NewsRepoImpl>()
-
-    fun getNews(): Single<List<NewsModel>> {
-        return newsRepo.getNews()
-            .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
-            .doOnSuccess { publishSubject.onNext(LoadingState.LOADED) }
-            .doOnError { publishSubject.onNext(LoadingState.FAIL) }
-            .applySchedulers()
-    }
 
     fun fetchNews() : Completable {
         return newsRepo.fetchNews()
@@ -59,7 +51,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
 
     }
 
-    fun getNewsSortedByTime(): Single<List<NewsModel>> {
+    fun getNewsOrderByTime(): Single<List<NewsModel>> {
         return newsRepo.getNews()
             .map { it.sortedByDescending { data -> data.timeCreated } }
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
@@ -68,7 +60,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
             .applySchedulers()
     }
 
-    fun getNewsSortedByRank(): Single<List<NewsModel>> {
+    fun getNewsOrderByRank(): Single<List<NewsModel>> {
         return newsRepo.getNews()
             .map { it.sortedByDescending { data -> data.rank } }
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }

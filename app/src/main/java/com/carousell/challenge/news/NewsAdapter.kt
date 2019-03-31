@@ -1,13 +1,14 @@
-package com.carousell.features.news
+package com.carousell.challenge.news
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.carousell.util.BaseRecyclerViewAdapter
-import com.carousell.util.BaseRecyclerViewHolder
-import com.carousell.dataSource.model.NewsModel
-import com.carousell.imageloader.GlideApp
+import com.carousell.challenge.R
+import com.carousell.challenge.dataSource.model.NewsModel
+import com.carousell.challenge.imageloader.GlideApp
+import com.carousell.challenge.util.BaseRecyclerViewAdapter
+import com.carousell.challenge.util.BaseRecyclerViewHolder
 import kotlinx.android.synthetic.main.item_news.view.*
 import org.koin.standalone.inject
 
@@ -16,7 +17,13 @@ class NewsAdapter(
 ) : BaseRecyclerViewAdapter<NewsModel>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {
-        return NewsItemViewHolder(LayoutInflater.from(parent.context).inflate(viewType, parent, false))
+        return NewsItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                viewType,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -39,6 +46,7 @@ class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(ite
     private fun bindToBanner(bannerUrl: String) {
         GlideApp.with(itemView.context)
             .load(bannerUrl)
+            .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
             .into(itemView.banner)
     }

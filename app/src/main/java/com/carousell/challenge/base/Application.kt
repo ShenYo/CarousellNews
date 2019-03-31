@@ -1,7 +1,7 @@
-package com.carousell.base
+package com.carousell.challenge.base
 
 import android.app.Application
-import com.carousell.di.*
+import com.carousell.challenge.di.*
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.android.startKoin

@@ -1,8 +1,8 @@
-package com.carousell.dataSource.repo
+package com.carousell.challenge.dataSource.repo
 
-import com.carousell.dataSource.local.NewsDao
-import com.carousell.dataSource.model.NewsModel
-import com.carousell.dataSource.remote.NewsApiService
+import com.carousell.challenge.dataSource.local.NewsDao
+import com.carousell.challenge.dataSource.model.NewsModel
+import com.carousell.challenge.dataSource.remote.NewsApiService
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.koin.standalone.KoinComponent

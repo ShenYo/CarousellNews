@@ -1,4 +1,4 @@
-package com.carousell.util
+package com.carousell.challenge.util
 
 import android.content.Context
 import android.view.View
