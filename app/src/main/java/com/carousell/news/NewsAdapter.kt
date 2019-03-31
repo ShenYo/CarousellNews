@@ -8,10 +8,7 @@ import com.carousell.base.BaseRecyclerViewAdapter
 import com.carousell.base.BaseRecyclerViewHolder
 import com.carousell.imageloader.GlideApp
 import kotlinx.android.synthetic.main.item_news.view.*
-import org.threeten.bp.Instant
-import org.threeten.bp.LocalDate
-import org.threeten.bp.Period
-import org.threeten.bp.ZoneId
+import org.koin.standalone.inject
 
 class NewsAdapter(
     context: Context
@@ -28,6 +25,8 @@ class NewsAdapter(
 }
 
 class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(itemView) {
+
+    private val viewModel by inject<NewsViewModel>()
 
     override fun bindDataToView(data: NewsModel) {
         bindToBanner(data.bannerUrl)
@@ -52,25 +51,7 @@ class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(ite
     }
 
     private fun bindToCreateTime(timeCreated: Long) {
-        val period = Period.between(
-            Instant.ofEpochSecond(timeCreated).atZone(ZoneId.systemDefault()).toLocalDate(),
-            LocalDate.now()
-        )
-
-        itemView.textCreatedAt.text = when {
-            period.years > 0 -> {
-                "${period.years} years ago"
-            }
-            period.months > 0 -> {
-                "${period.months} months ago"
-            }
-            period.days / 7 < 4 -> {
-                "${period.days} days ago"
-            }
-            else -> {
-                "${period.days / 7} weeks ago"
-            }
-        }
+        itemView.textCreatedAt.text = viewModel.getTextCreatedAt(timeCreated)
 
     }
 

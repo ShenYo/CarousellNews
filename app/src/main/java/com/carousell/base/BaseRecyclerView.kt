@@ -3,6 +3,8 @@ package com.carousell.base
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.standalone.KoinComponent
+
 
 /**
  * Description:
@@ -12,14 +14,28 @@ import androidx.recyclerview.widget.RecyclerView
  */
 
 
-abstract class BaseRecyclerViewAdapter<T>(val context: Context) : RecyclerView.Adapter<BaseRecyclerViewHolder<T>>() {
-    private var dataList: MutableList<T> = mutableListOf()
+abstract class BaseRecyclerViewAdapter<T>(
+    val context: Context
+) : RecyclerView.Adapter<BaseRecyclerViewHolder<T>>(), KoinComponent {
+
+    private lateinit var recyclerView: RecyclerView
+    var dataList: MutableList<T> = mutableListOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
 
     val isEmpty: Boolean
         get() = dataList.isEmpty()
 
     override fun getItemCount(): Int {
         return dataList.size
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
     }
 
     fun setData(data: List<T>) {
@@ -38,10 +54,11 @@ abstract class BaseRecyclerViewAdapter<T>(val context: Context) : RecyclerView.A
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder<T>, position: Int) {
         holder.bindDataToView(dataList[position])
     }
+
 }
 
 
-abstract class BaseRecyclerViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+abstract class BaseRecyclerViewHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView), KoinComponent {
 
     abstract fun bindDataToView(data: T)
 }
