@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.carousell.base.BaseRecyclerViewAdapter
 import com.carousell.base.BaseRecyclerViewHolder
+import com.carousell.dataSource.model.NewsModel
 import com.carousell.imageloader.GlideApp
 import kotlinx.android.synthetic.main.item_news.view.*
 import org.koin.standalone.inject

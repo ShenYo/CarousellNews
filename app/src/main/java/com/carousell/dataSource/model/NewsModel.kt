@@ -1,4 +1,4 @@
-package com.carousell.news
+package com.carousell.dataSource.model
 
 import com.google.gson.annotations.SerializedName
 

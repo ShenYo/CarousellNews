@@ -1,9 +1,7 @@
 package com.carousell.base
 
 import android.app.Application
-import com.carousell.di.repositoryModule
-import com.carousell.di.resourceModule
-import com.carousell.di.viewModelModule
+import com.carousell.di.*
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.android.startKoin
@@ -14,12 +12,14 @@ import org.koin.android.ext.android.startKoin
  * @author Shenyo
  * @version 1.0, 2019/3/30
  */
- 
- 
-class AppContext : Application()  {
+
+
+class AppContext : Application() {
 
     companion object {
         lateinit var INSTANCE: AppContext
+
+        const val API_ROOT = "https://storage.googleapis.com/"
     }
 
     override fun onCreate() {
@@ -39,9 +39,16 @@ class AppContext : Application()  {
     }
 
     private fun initDependencyInjection() {
-        startKoin(this, listOf(
-            viewModelModule, repositoryModule, resourceModule
-        ))
+        startKoin(
+            this, listOf(
+                netWorkModule,
+                viewModelModule,
+                repositoryModule,
+                remoteDataSourceModule,
+                localDataSourceModule,
+                resourceModule
+            )
+        )
     }
 }
 

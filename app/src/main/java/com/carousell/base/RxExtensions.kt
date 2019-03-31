@@ -51,8 +51,3 @@ fun <T> Maybe<T>.applySchedulers(): Maybe<T> {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 }
-
-//TODO: check requirement
-//fun <T> Flowable<T>.concat(observable: Observable<Any>): Flowable<T> {
-//    return
-//}

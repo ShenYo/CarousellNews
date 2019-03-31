@@ -2,6 +2,8 @@ package com.carousell.news
 
 import androidx.lifecycle.ViewModel
 import com.carousell.base.applySchedulers
+import com.carousell.dataSource.model.NewsModel
+import com.carousell.dataSource.repo.NewsRepo
 import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
 import org.koin.standalone.KoinComponent
