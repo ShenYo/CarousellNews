@@ -20,7 +20,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
 
     private val newsRepo by inject<NewsRepoImpl>()
 
-    fun fetchNews() : Completable {
+    fun fetchNews(): Completable {
         return newsRepo.fetchNews()
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
             .doOnComplete { publishSubject.onNext(LoadingState.LOADED) }
@@ -62,7 +62,10 @@ class NewsViewModel : ViewModel(), KoinComponent {
 
     fun getNewsOrderByRank(): Single<List<NewsModel>> {
         return newsRepo.getNews()
-            .map { it.sortedByDescending { data -> data.rank } }
+            .map {
+                it.sortedWith(compareByDescending<NewsModel> { news -> news.rank }
+                    .thenByDescending { news -> news.timeCreated })
+            }
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
             .doOnSuccess { publishSubject.onNext(LoadingState.LOADED) }
             .doOnError { publishSubject.onNext(LoadingState.FAIL) }
