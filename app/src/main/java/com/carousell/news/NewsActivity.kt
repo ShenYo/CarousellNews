@@ -116,7 +116,10 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
                     it.onComplete()
                 }
             }
-            .subscribe()
+            .subscribe(
+                { },
+                { Snackbar.make(rootContainer, it.localizedMessage, Snackbar.LENGTH_SHORT).show() }
+            )
             .apply { compositeDisposable.add(this) }
     }
 
