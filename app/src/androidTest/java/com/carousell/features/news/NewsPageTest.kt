@@ -45,7 +45,7 @@ class NewsPageTest : KoinComponent {
     }
 
     @Test
-    fun userSelectRecentFromOptionsMenu() {
+    fun userSelectRecentSorting() {
         val sortedNewsIdList = listOf(
             "122", "121", "123", "125", "126", "124"
         )
@@ -66,7 +66,7 @@ class NewsPageTest : KoinComponent {
     }
 
     @Test
-    fun userSelectPopularFromOptionsMenu() {
+    fun userSelectPopularSorting() {
         val sortedNewsIdList = listOf(
             "126", "122", "125", "121", "123", "124"
         )

@@ -11,7 +11,7 @@ import com.carousell.challenge.dataSource.model.NewsModel
 import com.carousell.challenge.util.BaseRecyclerViewAdapter
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_news.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.standalone.KoinComponent
 
@@ -27,7 +27,7 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
     }
 
     private fun initialize() {
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_news)
         setSupportActionBar(toolbar)
         observeLoadingState()
         initNewsList()

@@ -5,15 +5,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         app:cardCornerRadius="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_tiny"
         android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingBottom="12dp"
+            android:paddingBottom="@dimen/padding_medium"
             android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
@@ -23,7 +23,7 @@
                 android:layout_height="1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintGuide_begin="140dp"/>
+                app:layout_constraintGuide_begin="@dimen/news_banner_height"/>
 
         <ImageView
                 android:id="@+id/banner"
@@ -42,14 +42,14 @@
                 android:layout_width="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:paddingStart="14dp"
+                android:paddingStart="@dimen/padding_large"
                 android:ellipsize="end"
                 android:textColor="@android:color/black"
                 android:maxLines="2"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_large"
                 android:textStyle="bold"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="12dp"
+                android:paddingEnd="@dimen/padding_large"
+                android:layout_marginTop="@dimen/margin_medium"
                 app:layout_constraintTop_toBottomOf="@id/guideline"
                 android:layout_height="wrap_content"/>
 
@@ -58,13 +58,13 @@
                 android:layout_width="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:paddingStart="16dp"
+                android:paddingStart="@dimen/padding_large"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="12dp"
+                android:textSize="@dimen/text_medium"
+                android:paddingEnd="@dimen/padding_large"
+                android:layout_marginTop="@dimen/margin_tiny"
                 app:layout_constraintTop_toBottomOf="@id/textTitle"
                 android:layout_height="wrap_content"/>
 
@@ -73,15 +73,14 @@
                 android:layout_width="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:paddingStart="16dp"
+                android:paddingStart="@dimen/padding_large"
                 android:ellipsize="end"
-                android:textColor="@android:color/black"
-                android:textSize="12sp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="12dp"
+                android:textColor="#8F939C"
+                android:textSize="@dimen/text_small"
+                android:paddingEnd="@dimen/padding_large"
+                android:layout_marginTop="@dimen/margin_medium"
                 app:layout_constraintTop_toBottomOf="@id/textDescription"
                 android:layout_height="wrap_content"/>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
