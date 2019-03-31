@@ -2,8 +2,10 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
-def final myApplicationId = "com.carousell.news"
+
+def final myApplicationId = "com.carousell.features.news"
 
 android {
     compileSdkVersion build_versions.targetSdk
@@ -55,7 +57,14 @@ dependencies {
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.adapterRxJava2
 
+    implementation deps.room.runtime
+    implementation deps.room.rxJava2
+    kapt deps.room.compiler
+
     implementation deps.threeten
+
+    implementation deps.glide.core
+    kapt deps.glide.compiler
 
 
     testImplementation deps.junit
