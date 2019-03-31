@@ -5,8 +5,8 @@ import com.carousell.base.AppContext
 import com.carousell.util.ResourceManager
 import com.carousell.dataSource.CarousellDatabase
 import com.carousell.dataSource.remote.NewsApiService
-import com.carousell.dataSource.repo.NewsRepo
-import com.carousell.news.NewsViewModel
+import com.carousell.dataSource.repo.NewsRepoImpl
+import com.carousell.features.news.NewsViewModel
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
@@ -37,7 +37,7 @@ val netWorkModule = module {
 }
 
 val repositoryModule = module {
-    single { NewsRepo() }
+    single { NewsRepoImpl() }
 }
 
 val remoteDataSourceModule = module {

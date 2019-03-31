@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 
-def final myApplicationId = "com.carousell.news"
+def final myApplicationId = "com.carousell.features.news"
 
 android {
     compileSdkVersion build_versions.targetSdk

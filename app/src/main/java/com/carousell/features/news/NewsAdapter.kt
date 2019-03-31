@@ -1,4 +1,4 @@
-package com.carousell.news
+package com.carousell.features.news
 
 import android.content.Context
 import android.view.LayoutInflater

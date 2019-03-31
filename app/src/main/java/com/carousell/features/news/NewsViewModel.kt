@@ -1,9 +1,9 @@
-package com.carousell.news
+package com.carousell.features.news
 
 import androidx.lifecycle.ViewModel
 import com.carousell.base.applySchedulers
 import com.carousell.dataSource.model.NewsModel
-import com.carousell.dataSource.repo.NewsRepo
+import com.carousell.dataSource.repo.NewsRepoImpl
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
@@ -18,7 +18,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
 
     val publishSubject = PublishSubject.create<LoadingState>()
 
-    private val newsRepo by inject<NewsRepo>()
+    private val newsRepo by inject<NewsRepoImpl>()
 
     fun getNews(): Single<List<NewsModel>> {
         return newsRepo.getNews()

@@ -1,4 +1,4 @@
-package com.carousell.news
+package com.carousell.features.news
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.carousell.news", appContext.packageName)
+        assertEquals("com.carousell.features.news", appContext.packageName)
     }
 }
