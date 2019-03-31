@@ -1,7 +1,7 @@
 package com.carousell.dataSource.repo
 
-import com.carousell.challenge.dataSource.repo.NewsRepo
 import com.carousell.challenge.dataSource.model.NewsModel
+import com.carousell.challenge.dataSource.repo.NewsRepo
 import com.carousell.challenge.util.ResourceManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.carousell.challenge.base.AppContext
 import com.carousell.challenge.dataSource.CarousellNewsDatabase
 import com.carousell.challenge.dataSource.remote.NewsApiService
+import com.carousell.challenge.dataSource.repo.NewsRepo
 import com.carousell.challenge.dataSource.repo.NewsRepoImpl
 import com.carousell.challenge.news.NewsViewModel
 import com.carousell.challenge.util.ResourceManager
@@ -37,7 +38,7 @@ val netWorkModule = module {
 }
 
 val repositoryModule = module {
-    single { NewsRepoImpl() }
+    single<NewsRepo> { NewsRepoImpl() }
 }
 
 val remoteDataSourceModule = module {

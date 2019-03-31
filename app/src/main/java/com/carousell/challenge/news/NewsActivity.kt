@@ -12,13 +12,13 @@ import com.carousell.challenge.util.BaseRecyclerViewAdapter
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.standalone.KoinComponent
 
 class NewsActivity : AppCompatActivity(), KoinComponent {
 
     private val compositeDisposable = CompositeDisposable()
-    private val viewModel by inject<NewsViewModel>()
+    private val viewModel by viewModel<NewsViewModel>()
     private lateinit var adapter: BaseRecyclerViewAdapter<NewsModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,7 +105,7 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
     private fun initSwipeRefresh() {
         swipeRefreshLayout.setOnRefreshListener {
             initData()
-            Snackbar.make(rootContainer, "Back To Default Sorting Now", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(rootContainer, "Sort By Created Time Now", Snackbar.LENGTH_SHORT).show()
         }
     }
 

@@ -1,6 +1,7 @@
 package com.carousell.challenge.util
 
 import com.carousell.challenge.base.AppContext
+import org.koin.standalone.KoinComponent
 import java.io.IOException
 import java.nio.charset.Charset
 
@@ -12,12 +13,12 @@ import java.nio.charset.Charset
  */
  
  
-class ResourceManager {
+class ResourceManager: KoinComponent {
 
     fun loadJSONFromAsset(fileName : String): String {
         var json = ""
         try {
-            val `is` = AppContext.INSTANCE.getAssets().open(fileName)
+            val `is` = AppContext.INSTANCE.assets.open(fileName)
             val size = `is`.available()
             val buffer = ByteArray(size)
             `is`.read(buffer)

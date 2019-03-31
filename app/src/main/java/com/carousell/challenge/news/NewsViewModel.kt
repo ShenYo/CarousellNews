@@ -3,7 +3,8 @@ package com.carousell.challenge.news
 import androidx.lifecycle.ViewModel
 import com.carousell.challenge.base.applySchedulers
 import com.carousell.challenge.dataSource.model.NewsModel
-import com.carousell.challenge.dataSource.repo.NewsRepoImpl
+import com.carousell.challenge.dataSource.repo.NewsRepo
+import com.carousell.challenge.util.TimeFormatter
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
@@ -18,7 +19,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
 
     val publishSubject = PublishSubject.create<LoadingState>()
 
-    private val newsRepo by inject<NewsRepoImpl>()
+    private val newsRepo by inject<NewsRepo>()
 
     fun fetchNews(): Completable {
         return newsRepo.fetchNews()
@@ -32,22 +33,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
         return Period.between(
             Instant.ofEpochSecond(timeCreated).atZone(ZoneId.systemDefault()).toLocalDate(),
             LocalDate.now()
-        ).let { period ->
-            when {
-                period.years > 0 -> {
-                    "${period.years} years ago"
-                }
-                period.months > 0 -> {
-                    "${period.months} months ago"
-                }
-                period.days / 7 < 4 -> {
-                    "${period.days} days ago"
-                }
-                else -> {
-                    "${period.days / 7} weeks ago"
-                }
-            }
-        }
+        ).let { period -> TimeFormatter.format(period) }
 
     }
 
