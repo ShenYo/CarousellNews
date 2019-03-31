@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.carousell.base.applySchedulers
 import com.carousell.dataSource.model.NewsModel
 import com.carousell.dataSource.repo.NewsRepo
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
 import org.koin.standalone.KoinComponent
@@ -19,10 +20,18 @@ class NewsViewModel : ViewModel(), KoinComponent {
 
     private val newsRepo by inject<NewsRepo>()
 
-    fun fetchNews(): Single<List<NewsModel>> {
-        return newsRepo.fetchNews()
+    fun getNews(): Single<List<NewsModel>> {
+        return newsRepo.getNews()
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
             .doOnSuccess { publishSubject.onNext(LoadingState.LOADED) }
+            .doOnError { publishSubject.onNext(LoadingState.FAIL) }
+            .applySchedulers()
+    }
+
+    fun fetchNews() : Completable {
+        return newsRepo.fetchNews()
+            .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
+            .doOnComplete { publishSubject.onNext(LoadingState.LOADED) }
             .doOnError { publishSubject.onNext(LoadingState.FAIL) }
             .applySchedulers()
     }
@@ -51,7 +60,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
     }
 
     fun getNewsSortedByTime(): Single<List<NewsModel>> {
-        return newsRepo.fetchNews()
+        return newsRepo.getNews()
             .map { it.sortedByDescending { data -> data.timeCreated } }
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
             .doOnSuccess { publishSubject.onNext(LoadingState.LOADED) }
@@ -60,7 +69,7 @@ class NewsViewModel : ViewModel(), KoinComponent {
     }
 
     fun getNewsSortedByRank(): Single<List<NewsModel>> {
-        return newsRepo.fetchNews()
+        return newsRepo.getNews()
             .map { it.sortedByDescending { data -> data.rank } }
             .doOnSubscribe { publishSubject.onNext(LoadingState.LOADING) }
             .doOnSuccess { publishSubject.onNext(LoadingState.LOADED) }

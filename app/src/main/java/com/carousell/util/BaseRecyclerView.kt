@@ -1,4 +1,4 @@
-package com.carousell.base
+package com.carousell.util
 
 import android.content.Context
 import android.view.View

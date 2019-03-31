@@ -1,11 +1,14 @@
 package com.carousell.di
 
+import androidx.room.Room
 import com.carousell.base.AppContext
-import com.carousell.base.ResourceManager
+import com.carousell.util.ResourceManager
+import com.carousell.dataSource.CarousellDatabase
 import com.carousell.dataSource.remote.NewsApiService
 import com.carousell.dataSource.repo.NewsRepo
 import com.carousell.news.NewsViewModel
 import com.google.gson.Gson
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -38,11 +41,21 @@ val repositoryModule = module {
 }
 
 val remoteDataSourceModule = module {
-    single<NewsApiService>{ get<Retrofit>().create(NewsApiService::class.java) }
+    single<NewsApiService> { get<Retrofit>().create(NewsApiService::class.java) }
 }
 
 val localDataSourceModule = module {
+    single {
+        Room.databaseBuilder(
+            androidApplication(),
+            CarousellDatabase::class.java,
+            CarousellDatabase::class.java.simpleName
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
 
+    single { get<CarousellDatabase>().newsDao() }
 }
 
 val viewModelModule = module {

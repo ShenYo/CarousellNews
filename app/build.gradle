@@ -57,6 +57,10 @@ dependencies {
     implementation deps.retrofit.converterGson
     implementation deps.retrofit.adapterRxJava2
 
+    implementation deps.room.runtime
+    implementation deps.room.rxJava2
+    kapt deps.room.compiler
+
     implementation deps.threeten
 
     implementation deps.glide.core

@@ -19,19 +19,10 @@ fun <T> Observable<T>.applySchedulers(): Observable<T> {
         .observeOn(AndroidSchedulers.mainThread())
 }
 
-fun <T> Observable<T>.errorResume(): Observable<T> {
-    return this.onErrorResumeNext(Observable.empty())
-}
-
-
 fun <T> Flowable<T>.applySchedulers(): Flowable<T> {
     return this
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-}
-
-fun <T> Flowable<T>.errorResume(): Flowable<T> {
-    return this.onErrorResumeNext(Flowable.empty())
 }
 
 fun <T> Single<T>.applySchedulers(): Single<T> {

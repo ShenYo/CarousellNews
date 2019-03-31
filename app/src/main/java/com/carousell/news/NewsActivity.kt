@@ -5,9 +5,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carousell.base.BaseRecyclerViewAdapter
 import com.carousell.base.applySchedulers
 import com.carousell.dataSource.model.NewsModel
+import com.carousell.util.BaseRecyclerViewAdapter
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -43,12 +43,9 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
             R.id.action_recent -> {
                 adapter.run {
                     viewModel.getNewsSortedByTime()
-                        .subscribe { news ->
-                            setData(news)
-                        }.apply { compositeDisposable.add(this) }
+                        .subscribe { news -> setData(news) }
+                        .apply { compositeDisposable.add(this) }
 
-//                    dataList.sortByDescending { model -> model.timeCreated }
-//                    notifyItemRangeChanged(0, dataList.size)
                 }
                 Snackbar.make(rootContainer, "Sort By Created Time Now", Snackbar.LENGTH_SHORT).show()
                 true
@@ -56,12 +53,9 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
             R.id.action_popular -> {
                 adapter.run {
                     viewModel.getNewsSortedByRank()
-                        .subscribe { news ->
-                            setData(news)
-                        }.apply { compositeDisposable.add(this) }
+                        .subscribe { news -> setData(news) }
+                        .apply { compositeDisposable.add(this) }
 
-//                    dataList.sortByDescending { model -> model.rank }
-//                    notifyItemRangeChanged(0, dataList.size)
                 }
                 Snackbar.make(rootContainer, "Sort By Rank Now", Snackbar.LENGTH_SHORT).show()
                 true
@@ -99,10 +93,9 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
         newsList.run {
             adapter = NewsAdapter(this@NewsActivity)
                 .apply {
-                    viewModel.fetchNews()
-                        .subscribe { news -> setData(news) }
-                        .apply { compositeDisposable.add(this) }
-                }.also { this@NewsActivity.adapter = it }
+                    this@NewsActivity.adapter = this
+                    initData()
+                }
             layoutManager = LinearLayoutManager(this@NewsActivity)
         }
 
@@ -110,11 +103,21 @@ class NewsActivity : AppCompatActivity(), KoinComponent {
 
     private fun initSwipeRefresh() {
         swipeRefreshLayout.setOnRefreshListener {
-            viewModel.fetchNews()
-                .subscribe { news -> adapter.setData(news) }
-                .apply { compositeDisposable.add(this) }
+            initData()
             Snackbar.make(rootContainer, "Back To Default Sorting Now", Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    private fun initData() {
+        viewModel.fetchNews()
+            .andThen {
+                viewModel.getNews().subscribe { news ->
+                    adapter.setData(news)
+                    it.onComplete()
+                }
+            }
+            .subscribe()
+            .apply { compositeDisposable.add(this) }
     }
 
     override fun onDestroy() {

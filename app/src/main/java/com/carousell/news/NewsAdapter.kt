@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.carousell.base.BaseRecyclerViewAdapter
-import com.carousell.base.BaseRecyclerViewHolder
+import com.carousell.util.BaseRecyclerViewAdapter
+import com.carousell.util.BaseRecyclerViewHolder
 import com.carousell.dataSource.model.NewsModel
 import com.carousell.imageloader.GlideApp
 import kotlinx.android.synthetic.main.item_news.view.*
@@ -53,7 +53,6 @@ class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(ite
 
     private fun bindToCreateTime(timeCreated: Long) {
         itemView.textCreatedAt.text = viewModel.getTextCreatedAt(timeCreated)
-
     }
 
 }
