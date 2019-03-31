@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.carousell.challenge.R
 import com.carousell.challenge.dataSource.model.NewsModel
 import com.carousell.challenge.imageloader.GlideApp
@@ -48,6 +49,7 @@ class NewsItemViewHolder(itemView: View) : BaseRecyclerViewHolder<NewsModel>(ite
             .load(bannerUrl)
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .into(itemView.banner)
     }
 
