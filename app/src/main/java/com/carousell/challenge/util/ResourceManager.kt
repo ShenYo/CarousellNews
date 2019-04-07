@@ -18,11 +18,11 @@ class ResourceManager: KoinComponent {
     fun loadJSONFromAsset(fileName : String): String {
         var json = ""
         try {
-            val `is` = AppContext.INSTANCE.assets.open(fileName)
-            val size = `is`.available()
+            val inputStream = AppContext.INSTANCE.assets.open(fileName)
+            val size = inputStream.available()
             val buffer = ByteArray(size)
-            `is`.read(buffer)
-            `is`.close()
+            inputStream.read(buffer)
+            inputStream.close()
             json = String(buffer, Charset.forName("UTF-8"))
         } catch (ex: IOException) {
             ex.printStackTrace()
