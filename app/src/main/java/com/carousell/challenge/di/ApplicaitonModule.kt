@@ -8,7 +8,9 @@ import com.carousell.challenge.dataSource.repo.NewsRepo
 import com.carousell.challenge.dataSource.repo.NewsRepoImpl
 import com.carousell.challenge.news.NewsViewModel
 import com.carousell.challenge.util.ResourceManager
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
+import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -28,9 +30,15 @@ val netWorkModule = module {
     single { Gson() }
     single<GsonConverterFactory> { GsonConverterFactory.create(get()) }
     single<RxJava2CallAdapterFactory> { RxJava2CallAdapterFactory.create() }
+    single<OkHttpClient> {
+        OkHttpClient().newBuilder()
+            .addNetworkInterceptor(StethoInterceptor())
+            .build()
+    }
     single<Retrofit> {
         Retrofit.Builder()
             .baseUrl(AppContext.API_ROOT)
+            .client(get())
             .addCallAdapterFactory(get<RxJava2CallAdapterFactory>())
             .addConverterFactory(get<GsonConverterFactory>())
             .build()
